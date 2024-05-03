@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: hacbs-test-project-cix1
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: hacbs-test-project-cix1
+    app.kubernetes.io/part-of: integ-app-zmsl
+  name: hacbs-test-project-cix1
+spec:
+  replicas: 0
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: hacbs-jvm-build-test-project
+      app.kubernetes.io/instance: hacbs-test-project-cix1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hacbs-jvm-build-test-project
+        app.kubernetes.io/instance: hacbs-test-project-cix1
+    spec:
+      containers:
+      - image: hacbs-jvm-build-test-project:latest
+        name: hacbs-jvm-build-test-project
+        ports:
+        - containerPort: 8081
+          name: http
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 50m
+            memory: 100Mi
+          requests:
+            cpu: 10m
+            memory: 25Mi
+status: {}
